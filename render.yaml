@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: nimbus-collab-server
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: MONGODB_URI
+        sync: false # You'll need to set this in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true # This will automatically generate a secure random value
+    autoDeploy: true
+
+  - type: web
+    name: nimbus-collab-client
+    env: node
+    buildCommand: cd client && npm install && npm run build
+    startCommand: cd client && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: nimbus-collab-server
+          type: web
+          property: url
+    autoDeploy: true
