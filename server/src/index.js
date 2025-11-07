@@ -26,6 +26,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Import and setup static file serving middleware
+import { setupStaticMiddleware } from './static-middleware.js';
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
@@ -54,6 +57,11 @@ app.get('/', (req, res) => {
 });
 
 // 404 handler
+// Setup static file serving for production
+if (process.env.NODE_ENV === 'production') {
+  setupStaticMiddleware(app);
+}
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found', path: req.path });
 });

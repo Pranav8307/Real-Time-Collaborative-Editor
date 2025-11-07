@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: nimbus-collab-server
+    name: nimbus-collab
     env: node
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    buildCommand: cd client && npm install && npm run build && cd ../server && npm install
+    startCommand: cd server && NODE_ENV=production npm start
     envVars:
       - key: PORT
         value: 10000
@@ -11,17 +11,4 @@ services:
         sync: false # You'll need to set this in Render dashboard
       - key: JWT_SECRET
         generateValue: true # This will automatically generate a secure random value
-    autoDeploy: true
-
-  - type: web
-    name: nimbus-collab-client
-    env: node
-    buildCommand: cd client && npm install && npm run build
-    startCommand: cd client && npm run preview
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          name: nimbus-collab-server
-          type: web
-          envVarKey: RENDER_EXTERNAL_URL
     autoDeploy: true
