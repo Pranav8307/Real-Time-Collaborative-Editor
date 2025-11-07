@@ -1,0 +1,165 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #1e1e1e;
+}
+
+/* Active users list */
+.active-users {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+.active-users-list {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.active-user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid;
+  font-size: 12px;
+  transition: background 0.2s;
+}
+
+.active-user:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.user-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.user-name {
+  color: #d4d4d4;
+  font-size: 12px;
+}
+
+.current-user {
+  font-weight: 500;
+}
+
+.you-badge {
+  font-size: 10px;
+  color: #999;
+  margin-left: 4px;
+}
+
+.no-users {
+  color: #999;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: #252526;
+  border-bottom: 1px solid #3e3e42;
+  gap: 16px;
+}
+
+.back-button {
+  background: #3e3e42;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.back-button:hover {
+  background: #4e4e52;
+}
+
+.editor-title {
+  flex: 1;
+  color: white;
+  font-size: 18px;
+  margin: 0;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info,
+.profile-link-button {
+  color: #cccccc;
+  font-size: 14px;
+  background: none;
+  border: 1px solid #3e3e42;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.profile-link-button:hover {
+  background: #3e3e42;
+  color: white;
+}
+
+.editor-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.editor-content {
+  height: 100%;
+  width: 100%;
+}
+
+.editor-loading,
+.editor-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  gap: 20px;
+}
+
+.editor-error button {
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.editor-error button:hover {
+  background: #5568d3;
+}
+
+/* CodeMirror overrides */
+.cm-editor {
+  height: 100%;
+}
+
+.cm-scroller {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+}
+
