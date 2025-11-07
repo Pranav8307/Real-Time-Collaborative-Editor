@@ -10,8 +10,9 @@ export function setupStaticMiddleware(app) {
     const clientBuildPath = path.join(__dirname, '../../client/dist');
     app.use(express.static(clientBuildPath));
 
-    // Handle React routing, return all requests to React app
-    app.get('*', (req, res, next) => {
+    // Handle React routing, return all non-API/WS requests to React app
+    // Use '/*' instead of '*' to be compatible with path-to-regexp version on the deployment environment
+    app.get('/*', (req, res, next) => {
         if (req.path.startsWith('/api/') || req.path.startsWith('/ws')) {
             return next();
         }
