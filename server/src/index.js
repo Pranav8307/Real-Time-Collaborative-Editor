@@ -26,8 +26,14 @@ app.use((req, res, next) => {
   next();
 });
 
-// Import and setup static file serving middleware
+// Import static middleware
 import { setupStaticMiddleware } from './static-middleware.js';
+
+// If running in production, serve client static files before API routes so the
+// client app is served at the root path.
+if (process.env.NODE_ENV === 'production') {
+  setupStaticMiddleware(app);
+}
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -57,11 +63,6 @@ app.get('/', (req, res) => {
 });
 
 // 404 handler
-// Setup static file serving for production
-if (process.env.NODE_ENV === 'production') {
-  setupStaticMiddleware(app);
-}
-
 app.use((req, res) => {
   res.status(404).json({ error: 'Not found', path: req.path });
 });
