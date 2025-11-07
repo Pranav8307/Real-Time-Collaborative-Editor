@@ -6,7 +6,7 @@ services:
     startCommand: cd server && npm start
     envVars:
       - key: PORT
-        value: 3001
+        value: 10000
       - key: MONGODB_URI
         sync: false # You'll need to set this in Render dashboard
       - key: JWT_SECRET
@@ -23,5 +23,5 @@ services:
         fromService:
           name: nimbus-collab-server
           type: web
-          property: url
+          envVarKey: RENDER_EXTERNAL_URL
     autoDeploy: true
